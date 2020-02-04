@@ -32,14 +32,12 @@ pub fn run(version: VersionInfo) -> error::Result<()> {
 
 	match opt.subcommand {
 		None => {
-			sc_cli::init(&mut config, load_spec, &opt.run.shared_params, &version)?;
+			sc_cli::init(&opt.run.shared_params, &version)?;
+			sc_cli::load_spec(&mut config, &opt.run.shared_params, load_spec)?;
 
 			let is_kusama = config.chain_spec.as_ref().map_or(false, |s| s.is_kusama());
 
-			sc_cli::update_config_for_running_node(
-				&mut config,
-				opt.run,
-			)?;
+			sc_cli::update_config_for_running_node(&mut config, opt.run, &version)?;
 
 			info!("{}", version.name);
 			info!("  version {}", config.full_version());
@@ -72,7 +70,8 @@ pub fn run(version: VersionInfo) -> error::Result<()> {
 			}
 		},
 		Some(Subcommand::Base(cmd)) => {
-			sc_cli::init(&mut config, load_spec, cmd.get_shared_params(), &version)?;
+			sc_cli::init(cmd.get_shared_params(), &version)?;
+			sc_cli::load_spec(&mut config, &opt.run.shared_params, load_spec)?;
 
 			let is_kusama = config.chain_spec.as_ref().map_or(false, |s| s.is_kusama());
 
