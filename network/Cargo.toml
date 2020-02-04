@@ -19,7 +19,6 @@ sp-core = { git = "https://github.com/paritytech/substrate", branch = "cecton-cu
 sp-runtime = { git = "https://github.com/paritytech/substrate", branch = "cecton-cumulus-branch" }
 futures = "0.3.1"
 log = "0.4.8"
-exit-future = "0.2.0"
 sc-client = { git = "https://github.com/paritytech/substrate", branch = "cecton-cumulus-branch" }
 sp-blockchain = { git = "https://github.com/paritytech/substrate", branch = "cecton-cumulus-branch" }
 sp-api = { git = "https://github.com/paritytech/substrate", branch = "cecton-cumulus-branch" }
